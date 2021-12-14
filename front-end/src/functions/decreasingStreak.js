@@ -18,7 +18,7 @@ export const checkPriceDropStreak = (data) => {
       }
       numberToCompare = data[1]
     })
-    return `The maximum amount of days bitcoin’s price was decreasing was ${decreaseStreak} days in a row`
+    return `The maximum amount of days bitcoin's price was decreasing was ${decreaseStreak} days in a row`
 }
 
 export const checkDataGranularity = (timeDifference) => {
