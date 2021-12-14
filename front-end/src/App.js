@@ -7,7 +7,6 @@ import DateInputs from './components/DateInputs'
 import DecreasingStreak from './components/DecreasingStreak'
 import HighestTradingVolume from './components/HighestTradingVolume'
 import TimeMachine from './components/TimeMachine'
-import './index.css'
 
 function App() {
 
