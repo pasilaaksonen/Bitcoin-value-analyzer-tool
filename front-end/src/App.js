@@ -4,21 +4,25 @@ import { createTableFromDatas } from './functions/decreasingStreak'
 import { dateWithHighestTradingVolume } from './functions/highestTradingVolume'
 import { bestDatesForBuyingAndSelling } from './functions/timeMachine'
 import DateInputs from './components/DateInputs'
+import DecreasingStreak from './components/DecreasingStreak'
+import HighestTradingVolume from './components/HighestTradingVolume'
+import TimeMachine from './components/TimeMachine'
+import './index.css'
 
 function App() {
 
+  const [ startingMessage, setStartingMessage ] = useState("Select starting and ending dates")
   const [ startDate, setStartDate ] = useState(null)
   const [ endDate, setEndDate ] = useState(null)
   const [ differenceInMinutes, setDifferenceInMinutes ] = useState(null)
-
   const [ decreasingStreak, setDecreasingStreak ] = useState('')
   const [ highestTradingVolume, setHighestTradingVolume ] = useState('')
   const [ timeMachine, setTimeMachine ] = useState('')
 
   const handleDifferentParts = (data) => {
-    setDecreasingStreak(createTableFromDatas(data, differenceInMinutes))
-    setHighestTradingVolume(dateWithHighestTradingVolume(data, differenceInMinutes))
-    setTimeMachine(bestDatesForBuyingAndSelling(data, differenceInMinutes))
+      setDecreasingStreak(createTableFromDatas(data, differenceInMinutes))
+      setHighestTradingVolume(dateWithHighestTradingVolume(data, differenceInMinutes))
+      setTimeMachine(bestDatesForBuyingAndSelling(data, differenceInMinutes))
   }
 
   const handleGetData = () => {
@@ -32,12 +36,13 @@ function App() {
         handleDifferentParts(response.data)
       })
       .catch(error => {
-        console.log(error);
+        console.log(error)
       })
+    setStartingMessage('')
   }
 
   return (
-    <>
+    <div className='page'>
       <DateInputs 
         startDate={startDate}
         setStartDate={setStartDate}
@@ -45,11 +50,11 @@ function App() {
         setEndDate={setEndDate}
         handleGetData={handleGetData}
       />
-      <h2>Between the chosen dates:</h2>
-      { decreasingStreak && <p>{decreasingStreak}</p>}
-      { highestTradingVolume && <p>{highestTradingVolume}</p>}
-      { timeMachine && <p>{timeMachine}</p>}
-    </>
+      { startingMessage && <h2>{startingMessage}</h2>}
+      { decreasingStreak && <DecreasingStreak decreasingStreak={decreasingStreak} />}
+      { highestTradingVolume && <HighestTradingVolume highestTradingVolume={highestTradingVolume}/>}
+      { timeMachine && <TimeMachine timeMachine={timeMachine}/>}
+    </div>
   );
 }
 
