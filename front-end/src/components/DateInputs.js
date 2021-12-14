@@ -2,7 +2,13 @@ import React from 'react'
 import DatePicker from 'react-datepicker'
 import  'react-datepicker/dist/react-datepicker.css'
 
-function DateInputs({ startDate, endDate, setStartDate, setEndDate, handleGetData }) {
+function DateInputs({ 
+    startDate, 
+    endDate, 
+    setStartDate, 
+    setEndDate, 
+    handleGetData, 
+}) {
     return (
         <div>
             <h1>Bitcoin value analyzer tool</h1>
